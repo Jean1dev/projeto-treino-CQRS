@@ -24,4 +24,20 @@ public class QueueConfiguration {
                 .to(exchange)
                 .with(queue2);
     }
+
+    @Bean
+    public Binding turmas(DirectExchange exchange) {
+        String queue2 = "turma-queue";
+        return BindingBuilder.bind(new Queue(queue2, true, false, false))
+                .to(exchange)
+                .with(queue2);
+    }
+
+    @Bean
+    public Binding professor(DirectExchange exchange) {
+        String queue2 = "professor-queue";
+        return BindingBuilder.bind(new Queue(queue2, true, false, false))
+                .to(exchange)
+                .with(queue2);
+    }
 }

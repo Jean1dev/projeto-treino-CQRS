@@ -7,7 +7,7 @@ CREATE TABLE aluno
     matricula VARCHAR(36),
     formaIngresso VARCHAR(255),
     CONSTRAINT aluno_pkey PRIMARY KEY (id)
-)
+);
 
 CREATE TABLE professor
 (
@@ -17,9 +17,9 @@ CREATE TABLE professor
     cpf VARCHAR(255),
     titulacao VARCHAR(255),
     CONSTRAINT professor_key PRIMARY KEY (id)
-)
+);
 
-CREATE TABLE disciplina
+CREATE TABLE turma
 (
     id VARCHAR(36),
     descricao VARCHAR(255),
@@ -28,29 +28,27 @@ CREATE TABLE disciplina
     numeroVagas INTEGER,
     professor_id VARCHAR(36),
     CONSTRAINT disciplina_pkey PRIMARY KEY (id)
-)
+);
 
-CREATE TABLE turma
+CREATE TABLE disciplina
 (
     id VARCHAR(36),
     descricao VARCHAR(255),
     sigla VARCHAR(255),
     cargaHoraria INTEGER,
     CONSTRAINT turma_pkey PRIMARY KEY (id)
-)
-
+);
 
 CREATE TABLE aluno_turma
 (
     aluno_id VARCHAR(36) REFERENCES aluno (id) ON UPDATE CASCADE ON DELETE CASCADE,
     turma_id VARCHAR(36) REFERENCES turma (id) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT aluno_turma_pkey PRIMARY KEY (turma_id, aluno_id)
-)
-
+);
 
 CREATE TABLE turma_disciplina
 (
     disciplina_id VARCHAR(36) REFERENCES disciplina (id) ON UPDATE CASCADE ON DELETE CASCADE,
     turma_id VARCHAR(36) REFERENCES turma (id) ON UPDATE CASCADE ON DELETE CASCADE,
     CONSTRAINT turma_disciplinas_pkey PRIMARY KEY (turma_id, disciplina_id)
-)
+);

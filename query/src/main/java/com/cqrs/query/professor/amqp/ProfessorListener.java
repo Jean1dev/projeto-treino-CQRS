@@ -1,7 +1,8 @@
-package com.cqrs.query.aluno.amqp;
+package com.cqrs.query.professor.amqp;
 
 import com.cqrs.query.aluno.amqp.event.AlunoEvent;
-import com.cqrs.query.aluno.service.AlunoCriadoService;
+import com.cqrs.query.professor.amqp.events.ProfessorCriadoEvent;
+import com.cqrs.query.professor.service.ProfessorCriadoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
 import org.springframework.amqp.core.Message;
@@ -12,15 +13,15 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-public class AlunoListener {
+public class ProfessorListener {
 
     @Autowired
-    private AlunoCriadoService service;
+    private ProfessorCriadoService service;
 
-    @RabbitListener(queues = "aluno-queue")
+    @RabbitListener(queues = "professor-queue")
     public void onListener(Message message) {
         try {
-            service.handle(new ObjectMapper().readValue(message.getBody(), AlunoEvent.class));
+            service.onCreated(new ObjectMapper().readValue(message.getBody(), ProfessorCriadoEvent.class));
         } catch (IOException e) {
             e.printStackTrace();
             throw new AmqpRejectAndDontRequeueException(e);

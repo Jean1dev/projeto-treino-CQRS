@@ -1,14 +1,13 @@
 package com.cqrs.query.aluno.domain.model;
 
+import com.cqrs.query.turma.domain.model.Turma;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "aluno")
@@ -27,4 +26,8 @@ public class Aluno {
 
     @Column(name = "formaingresso")
     private String formaIngresso;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "aluno_turma", joinColumns = {@JoinColumn(name = "aluno_id")}, inverseJoinColumns = {@JoinColumn(name = "turma_id")})
+    private List<Turma> turmas;
 }

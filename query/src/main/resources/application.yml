@@ -3,14 +3,14 @@ server:
 
 spring:
   jpa:
+    show-sql: true
     hibernate:
       ddl-auto: none
-      show-sql: true
       dialect: org.hibernate.dialect.PostgreSQLDialect
 
   datasource:
     platform: postgres
-    url: jdbc:postgresql://localhost:5432/matriculas_query
+    url: jdbc:postgresql://localhost:5432/cqrs_query
     username: jeanfernandes
     password: admin
     driverClassName: org.postgresql.Driver
