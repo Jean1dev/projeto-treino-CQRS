@@ -2,6 +2,14 @@ server:
   port: 8081
 
 spring:
+
+  flyway:
+    schemas: cqrs_query
+    url: jdbc:postgresql://localhost:5432/cqrs_query
+    enabled: true
+    migrate: true
+    locations: classpath:db/migration
+
   jpa:
     show-sql: true
     hibernate:
