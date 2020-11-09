@@ -4,11 +4,10 @@ server:
 spring:
 
   flyway:
-    schemas: cqrs_query
-    url: jdbc:postgresql://localhost:5432/cqrs_query
-    enabled: true
-    migrate: true
+    clean-disabled: false
+    clean-on-validation-error: false
     locations: classpath:db/migration
+    table: schema_history
 
   jpa:
     show-sql: true
