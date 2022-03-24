@@ -7,7 +7,7 @@ services:
       - "27017:27017"
     volumes:
       - /volumes/mongodb:/data/db
-    container_name: mongodb
+    container_name: mongodb-live
 
   postgres:
     image: postgres:alpine
@@ -19,7 +19,7 @@ services:
       POSTGRES_PASSWORD: "admin"
     volumes:
       - "./volumes/postgres/:/data/db"
-    container_name: pg
+    container_name: pg-live
 
   rabbitMQ:
     image: rabbitmq:3-management
@@ -32,7 +32,7 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
-    container_name: rabbitmq
+    container_name: rabbitmq-live
     volumes:
       - "./enabled_plugins:/data/rabbitmq/enabled_plugins"
 

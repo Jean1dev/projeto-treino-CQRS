@@ -2,8 +2,11 @@ package com.cqrs.core;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+//@ComponentScan(basePackageClasses = ComponentFilter.class)
+@ComponentScan(basePackages = "middlewares")
 public class CoreApplication {
 
 	public static void main(String[] args) {
